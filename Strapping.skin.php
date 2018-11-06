@@ -103,6 +103,10 @@ class StrappingTemplate extends BaseTemplate {
     // Build additional attributes for navigation urls
     $nav = $this->data['content_navigation'];
 
+    /**
+     * Prevent the following from happening on MediaWiki 1.27.x by commenting out this section:
+     * Fatal error: Call to undefined method Title::userIsWatching() in Strapping.skin.php on line 107
+     *
     if ( $wgVectorUseIconWatch ) {
       $mode = $this->getSkin()->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
       if ( isset( $nav['actions'][$mode] ) ) {
@@ -112,6 +116,7 @@ class StrappingTemplate extends BaseTemplate {
         unset( $nav['actions'][$mode] );
       }
     }
+     */
 
     $xmlID = '';
     foreach ( $nav as $section => $links ) {
